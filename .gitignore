@@ -1,0 +1,17 @@
+# Sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini
+# Editores
+.vscode/
+.idea/
+.vs/
+*.user
+# .NET
+bin/
+obj/
+# Configuración local con contraseña
+appsettings.Development.json
+# Temporales
+*.log
+*.tmp

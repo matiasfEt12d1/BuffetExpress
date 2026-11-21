@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {{CABECERA_EXTRA}}
+  <title>{{TITULO}} · Buffet Express</title>
+  <!-- Tipografías de Google Fonts (es CSS). Sin internet se usan Segoe UI, Ubuntu o Arial. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&family=Rubik:wght@500;600;700&display=swap">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/{{ESTILO}}.css">
+</head>
+<body class="{{ESTILO}}">
+  <header class="encabezado">
+    <a href="/" class="encabezado-logo"><img src="/img/logo.png" alt="Buffet Express · Pedí antes. Retirá sin fila." class="logo"></a>
+  </header>
+
+  <main class="contenido">
+    {{CONTENIDO}}
+  </main>
+
+  <footer class="pie">
+    <p>Buffet Express · Grupo 4</p>
+    <nav aria-label="Demo">
+      <a href="/">Vista del alumno</a> · <a href="/buffet">Panel del buffet</a>
+    </nav>
+  </footer>
+</body>
+</html>
