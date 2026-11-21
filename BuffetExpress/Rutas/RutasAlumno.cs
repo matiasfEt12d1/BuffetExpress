@@ -23,6 +23,10 @@ public static class RutasAlumno
 
         // Paso 3: datos del alumno
         app.MapGet("/datos", MostrarDatos);
+
+        // Confirmar y Paso 4: ticket de retiro
+        app.MapPost("/pedidos", (Delegate)ConfirmarPedido);
+        app.MapGet("/ticket/{id:int}", MostrarTicket);
     }
 
     // ================= Paso 1: catálogo =================
@@ -271,6 +275,96 @@ public static class RutasAlumno
             ["TOTAL"] = Plantilla.Pesos(pedido.Total())
         };
         return Plantilla.Pagina("Tus datos", "alumno", "datos.html", marcadores, codigoHttp);
+    }
+
+    // ================= Confirmar el pedido =================
+
+    // Valida los datos (también en C#, no solo en el navegador),
+    // guarda el pedido en MySQL, vacía la sesión y va al ticket.
+    private static async Task<IResult> ConfirmarPedido(HttpContext contexto)
+    {
+        var formulario = await contexto.Request.ReadFormAsync();
+        string nombre = formulario["nombre"].ToString().Trim();
+        string curso = formulario["curso"].ToString().Trim();
+
+        PedidoNuevo pedido = LeerPedidoEnCurso(contexto);
+        if (pedido.CantidadTotal() == 0)
+        {
+            return Results.Redirect("/?aviso=vacio");
+        }
+        if (!PedidoNuevo.RecreoValido(pedido.Recreo))
+        {
+            return Results.Redirect("/pedido?aviso=recreo");
+        }
+
+        pedido.Nombre = nombre;
+        pedido.Curso = curso;
+        string error = pedido.Validar();
+        if (error != "")
+        {
+            // Volvemos a mostrar el formulario con el aviso y lo que ya había escrito
+            return PaginaDatos(pedido, nombre, curso, error, 400);
+        }
+
+        int id;
+        try
+        {
+            id = PedidosRepositorio.GuardarPedido(pedido);
+        }
+        catch (InvalidOperationException ex)
+        {
+            // Por ejemplo: se acabó el stock mientras el alumno elegía
+            return PaginaDatos(pedido, nombre, curso, ex.Message + " Volvé a tu pedido para cambiarlo.", 400);
+        }
+
+        contexto.Session.Remove("pedido");
+        return Results.Redirect("/ticket/" + id);
+    }
+
+    // ================= Paso 4: ticket de retiro =================
+
+    private static IResult MostrarTicket(int id)
+    {
+        Pedido? pedido = PedidosRepositorio.ObtenerPedido(id);
+        if (pedido == null)
+        {
+            return Plantilla.Error("No encontramos ese ticket. Revisá el número o hacé un pedido nuevo.", 404);
+        }
+
+        // Mensaje según el estado del pedido
+        string mensaje = "Cuando esté listo, el estado cambia a \"Listo para retirar\".";
+        string claseTicket = "ticket";
+        if (pedido.Estado == Pedido.Listo)
+        {
+            mensaje = "¡Tu pedido está listo! Pasá a retirarlo en el recreo de las " + pedido.Recreo + ".";
+            claseTicket = "ticket ticket-listo";
+        }
+        if (pedido.Estado == Pedido.Entregado)
+        {
+            mensaje = "Ya retiraste este pedido. ¡Buen provecho!";
+            claseTicket = "ticket ticket-entregado";
+        }
+
+        string items = "";
+        foreach (var item in pedido.Items)
+        {
+            items += "<li>" + item.Cantidad + " × " + Plantilla.Texto(item.Nombre) + "</li>";
+        }
+
+        var marcadores = new Dictionary<string, string>
+        {
+            ["ID"] = pedido.Id.ToString(),
+            ["CLASE_TICKET"] = claseTicket,
+            ["CODIGO"] = Plantilla.Texto(pedido.CodigoRetiro),
+            ["RECREO"] = Plantilla.Texto(pedido.Recreo),
+            ["TOTAL"] = Plantilla.Pesos(pedido.Total),
+            ["NOMBRE"] = Plantilla.Texto(pedido.Nombre),
+            ["CURSO"] = Plantilla.Texto(pedido.Curso),
+            ["ITEMS"] = items,
+            ["ESTADO"] = Plantilla.Etiqueta(pedido.Estado),
+            ["MENSAJE_ESTADO"] = Plantilla.Texto(mensaje)
+        };
+        return Plantilla.Pagina("Ticket de retiro", "alumno", "ticket.html", marcadores);
     }
 
     // ================= Ayudas para la sesión =================

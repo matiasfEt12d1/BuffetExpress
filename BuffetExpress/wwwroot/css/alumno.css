@@ -256,3 +256,64 @@
   font-size: 0.9rem;
   color: var(--texto-apagado);
 }
+
+/* ---------- Paso 4: ticket de retiro ---------- */
+.ticket {
+  padding: 20px 24px 24px;
+  border: 2px solid var(--oscuro);
+  border-top: 10px solid var(--naranja);
+  border-radius: 20px;
+  background: var(--blanco);
+}
+
+.ticket-listo {
+  border-color: var(--naranja);
+  background: #FFF4EC;
+}
+
+.ticket-entregado {
+  border-color: #B9BCC6;
+  border-top-color: #B9BCC6;
+}
+
+.ticket-etiqueta {
+  margin: 0;
+  font-weight: 600;
+  color: var(--texto-secundario);
+}
+
+/* El código bien grande para mostrarlo en el buffet */
+.ticket-codigo {
+  margin: 8px 0 16px;
+  font-family: var(--fuente-titulos);
+  font-size: 5.5rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  text-align: center;
+  color: var(--oscuro);
+}
+
+.ticket-dato {
+  margin: 0 0 4px;
+  font-size: 1.1rem;
+}
+
+.ticket-alumno {
+  color: var(--texto-secundario);
+}
+
+.ticket-items {
+  margin: 8px 0 16px;
+  padding-left: 20px;
+  color: var(--texto-apagado);
+}
+
+.ticket-nota {
+  margin: 20px 0 4px;
+}
+
+.ticket ~ .boton-grande {
+  margin-top: 16px;
+}
