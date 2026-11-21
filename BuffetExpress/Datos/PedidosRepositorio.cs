@@ -90,7 +90,7 @@ public static class PedidosRepositorio
                 }
 
                 if (producto == null)
-                    throw new InvalidOperationException("El producto \"" + par.Key + "\" no está en el menú.");
+                    throw new InvalidOperationException("El producto " + par.Key + " no está en el menú.");
                 if (producto.Stock < par.Value)
                     throw new InvalidOperationException("No queda stock suficiente de " + producto.Nombre
                         + " (quedan " + producto.Stock + ").");
