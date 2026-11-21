@@ -1,0 +1,24 @@
+<p class="paso">Paso 3 de 4 · Datos del alumno</p>
+<h1>Tus datos</h1>
+
+{{AVISO}}
+
+<form method="post" action="/pedidos" class="formulario">
+  <label for="nombre" class="campo">Nombre y apellido</label>
+  <input type="text" id="nombre" name="nombre" value="{{NOMBRE}}" placeholder="Juan Pérez"
+         required maxlength="100" autocomplete="name">
+
+  <label for="curso" class="campo">Curso y división</label>
+  <input type="text" id="curso" name="curso" value="{{CURSO}}" placeholder="5.º A"
+         required maxlength="20">
+
+  <div class="tarjeta resumen">
+    <p>Resumen: {{RESUMEN}} · Recreo {{RECREO}}</p>
+    <p class="resumen-total">Total: {{TOTAL}}</p>
+    <p class="resumen-nota">Lo pagás en el buffet cuando lo retirás.</p>
+  </div>
+
+  <button type="submit" class="boton boton-grande">Confirmar pedido</button>
+</form>
+
+<a href="/pedido" class="volver">← Volver a mi pedido</a>

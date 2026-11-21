@@ -207,3 +207,52 @@
   margin-top: 16px;
   color: var(--texto-secundario);
 }
+
+/* ---------- Paso 3: tus datos ---------- */
+.campo {
+  display: block;
+  margin: 16px 0 6px;
+  font-weight: 600;
+}
+
+.formulario input[type="text"] {
+  width: 100%;
+  min-height: 48px;
+  padding: 10px 14px;
+  border: 2px solid #D8CCBE;
+  border-radius: 12px;
+  background: var(--blanco);
+  color: var(--oscuro);
+  font: inherit;
+}
+
+.formulario input[type="text"]::placeholder {
+  color: #9A9EAA;
+}
+
+.formulario input[type="text"]:focus {
+  border-color: var(--naranja);
+  outline: none;
+}
+
+.resumen {
+  margin: 24px 0;
+}
+
+.resumen p {
+  margin: 0 0 4px;
+  color: var(--texto-secundario);
+}
+
+.resumen .resumen-total {
+  font-family: var(--fuente-titulos);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--oscuro);
+}
+
+.resumen .resumen-nota {
+  margin: 8px 0 0;
+  font-size: 0.9rem;
+  color: var(--texto-apagado);
+}

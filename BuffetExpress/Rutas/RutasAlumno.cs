@@ -20,6 +20,9 @@ public static class RutasAlumno
         app.MapGet("/pedido", MostrarPedido);
         app.MapPost("/pedido/quitar", (Delegate)QuitarProducto);
         app.MapPost("/pedido/recreo", (Delegate)ElegirRecreo);
+
+        // Paso 3: datos del alumno
+        app.MapGet("/datos", MostrarDatos);
     }
 
     // ================= Paso 1: catálogo =================
@@ -229,6 +232,45 @@ public static class RutasAlumno
         pedido.Recreo = recreo;
         GuardarPedidoEnCurso(contexto, pedido);
         return Results.Redirect("/datos");
+    }
+
+    // ================= Paso 3: datos del alumno =================
+
+    private static IResult MostrarDatos(HttpContext contexto)
+    {
+        PedidoNuevo pedido = LeerPedidoEnCurso(contexto);
+        if (pedido.CantidadTotal() == 0)
+        {
+            return Results.Redirect("/?aviso=vacio");
+        }
+        if (!PedidoNuevo.RecreoValido(pedido.Recreo))
+        {
+            return Results.Redirect("/pedido?aviso=recreo");
+        }
+        return PaginaDatos(pedido, "", "", "", 200);
+    }
+
+    // Arma la pantalla "Tus datos". Se usa al entrar y también cuando
+    // falta algún dato al confirmar (así no se borra lo que ya escribió).
+    private static IResult PaginaDatos(PedidoNuevo pedido, string nombre, string curso, string aviso, int codigoHttp)
+    {
+        // "1 Tostado · 2 Agua 500 ml"
+        var partes = new List<string>();
+        foreach (var item in pedido.Productos!)
+        {
+            partes.Add(item.Cantidad + " " + item.Nombre);
+        }
+
+        var marcadores = new Dictionary<string, string>
+        {
+            ["AVISO"] = Plantilla.Aviso(aviso),
+            ["NOMBRE"] = Plantilla.Texto(nombre),
+            ["CURSO"] = Plantilla.Texto(curso),
+            ["RESUMEN"] = Plantilla.Texto(string.Join(" · ", partes)),
+            ["RECREO"] = Plantilla.Texto(pedido.Recreo),
+            ["TOTAL"] = Plantilla.Pesos(pedido.Total())
+        };
+        return Plantilla.Pagina("Tus datos", "alumno", "datos.html", marcadores, codigoHttp);
     }
 
     // ================= Ayudas para la sesión =================
