@@ -222,6 +222,22 @@ public static class PedidosRepositorio
         return pedidos;
     }
 
+    // ---------- Cambiar el estado ----------
+
+    // Pasa el pedido de un estado al siguiente (Pendiente -> Listo -> Entregado).
+    // Solo cambia si el pedido está en el estado anterior que corresponde,
+    // así un doble clic no lo saltea. Devuelve true si cambió.
+    public static bool CambiarEstado(int id, string estadoAnterior, string estadoNuevo)
+    {
+        using var conexion = Conexion.Abrir();
+        using var comando = new MySqlCommand(
+            "UPDATE pedidos SET estado = @nuevo WHERE id = @id AND estado = @anterior", conexion);
+        comando.Parameters.AddWithValue("@nuevo", estadoNuevo);
+        comando.Parameters.AddWithValue("@id", id);
+        comando.Parameters.AddWithValue("@anterior", estadoAnterior);
+        return comando.ExecuteNonQuery() > 0;
+    }
+
     private static Pedido LeerPedido(MySqlDataReader lector)
     {
         return new Pedido

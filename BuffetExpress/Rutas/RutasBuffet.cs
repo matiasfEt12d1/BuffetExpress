@@ -10,6 +10,19 @@ public static class RutasBuffet
     public static void Registrar(WebApplication app)
     {
         app.MapGet("/buffet", MostrarPanel);
+
+        // Botones de cada tarjeta
+        app.MapPost("/buffet/{id:int}/listo", (int id) =>
+        {
+            PedidosRepositorio.CambiarEstado(id, Pedido.Pendiente, Pedido.Listo);
+            return Results.Redirect("/buffet");
+        });
+
+        app.MapPost("/buffet/{id:int}/entregado", (int id) =>
+        {
+            PedidosRepositorio.CambiarEstado(id, Pedido.Listo, Pedido.Entregado);
+            return Results.Redirect("/buffet");
+        });
     }
 
     private static IResult MostrarPanel()
@@ -83,7 +96,26 @@ public static class RutasBuffet
              + "<p class=\"pedido-total\">Cobrar " + Plantilla.Pesos(pedido.Total) + " al retirar</p>"
              + "<div class=\"pedido-pie\">"
              + Plantilla.Etiqueta(pedido.Estado)
+             + Boton(pedido)
              + "</div>"
              + "</article>";
+    }
+
+    // Botón según el estado: oscuro "Listo para retirar" o con borde "Entregado"
+    private static string Boton(Pedido pedido)
+    {
+        if (pedido.Estado == Pedido.Pendiente)
+        {
+            return "<form method=\"post\" action=\"/buffet/" + pedido.Id + "/listo\">"
+                 + "<button type=\"submit\" class=\"boton\">Listo para retirar</button>"
+                 + "</form>";
+        }
+        if (pedido.Estado == Pedido.Listo)
+        {
+            return "<form method=\"post\" action=\"/buffet/" + pedido.Id + "/entregado\">"
+                 + "<button type=\"submit\" class=\"boton boton-borde\">Entregado</button>"
+                 + "</form>";
+        }
+        return "";
     }
 }
