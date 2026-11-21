@@ -1,0 +1,72 @@
+### Buffet Express · pruebas de la prueba de concepto (T-16)
+### Se ejecutan desde Visual Studio, VS Code (extensión REST Client) o Rider
+### con la app corriendo: dotnet run --project BuffetExpress
+
+@servidor = http://localhost:5000
+
+### 1) Menú del día -> 200 con la lista de productos
+GET {{servidor}}/api/menu
+Accept: application/json
+
+### 2) Pedido válido -> 201 con id_pedido, codigo_retiro, total, recreo, estado y fecha
+POST {{servidor}}/api/pedidos
+Content-Type: application/json
+
+{
+  "nombre": "Juan Pérez",
+  "curso": "5.º A",
+  "recreo": "10:10",
+  "productos": [
+    { "nombre": "Sándwich de milanesa", "cantidad": 1, "precio": 3500 }
+  ]
+}
+
+### 3) Datos vacíos -> 400 con mensaje "Falta el nombre y apellido."
+POST {{servidor}}/api/pedidos
+Content-Type: application/json
+
+{
+  "nombre": "",
+  "curso": "",
+  "recreo": "",
+  "productos": []
+}
+
+### 4) Sin elegir recreo -> 400 con mensaje
+POST {{servidor}}/api/pedidos
+Content-Type: application/json
+
+{
+  "nombre": "Ana Gómez",
+  "curso": "4.º B",
+  "recreo": "",
+  "productos": [
+    { "nombre": "Tostado", "cantidad": 1, "precio": 2500 }
+  ]
+}
+
+### 5) Precio cambiado por el cliente -> se ignora: el total sale de la base ($2.500)
+POST {{servidor}}/api/pedidos
+Content-Type: application/json
+
+{
+  "nombre": "Lucas Díaz",
+  "curso": "3.º A",
+  "recreo": "12:15",
+  "productos": [
+    { "nombre": "Tostado", "cantidad": 1, "precio": 1 }
+  ]
+}
+
+### 6) Producto que no está en el menú -> 400 con mensaje
+POST {{servidor}}/api/pedidos
+Content-Type: application/json
+
+{
+  "nombre": "Lucas Díaz",
+  "curso": "3.º A",
+  "recreo": "12:15",
+  "productos": [
+    { "nombre": "Pizza", "cantidad": 1, "precio": 3000 }
+  ]
+}
