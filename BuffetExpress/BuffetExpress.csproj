@@ -7,4 +7,8 @@
     <RootNamespace>BuffetExpress</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="MySqlConnector" Version="3.0.0" />
+  </ItemGroup>
+
 </Project>
