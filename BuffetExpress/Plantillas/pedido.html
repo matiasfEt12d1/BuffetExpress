@@ -1,0 +1,31 @@
+<p class="paso">Paso 2 de 4 · Pedido y recreo</p>
+<h1>Mi pedido</h1>
+
+{{AVISO}}
+
+<div class="tarjeta">
+  <ul class="items">
+    {{ITEMS}}
+  </ul>
+  <p class="total"><span>Total</span><span>{{TOTAL}}</span></p>
+</div>
+
+<form method="post" action="/pedido/recreo" class="formulario">
+  <fieldset class="recreos">
+    <legend>¿En qué recreo lo retirás?</legend>
+    <label class="opcion">
+      <input type="radio" name="recreo" value="10:10" required {{MARCA_1010}}>
+      <span>Recreo 10:10</span>
+    </label>
+    <label class="opcion">
+      <input type="radio" name="recreo" value="12:15" {{MARCA_1215}}>
+      <span>Recreo 12:15</span>
+    </label>
+  </fieldset>
+
+  <p class="nota">Pagás en el buffet al retirar.</p>
+
+  <button type="submit" class="boton boton-grande">Continuar</button>
+</form>
+
+<a href="/" class="volver">← Agregar más productos</a>

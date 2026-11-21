@@ -103,3 +103,107 @@
   text-align: center;
   color: var(--texto-apagado);
 }
+
+/* ---------- Paso 2: mi pedido y recreo ---------- */
+.items {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--borde);
+}
+
+.item-nombre {
+  flex: 1;
+}
+
+.item-precio {
+  font-weight: 700;
+}
+
+.item form {
+  margin: 0;
+}
+
+.boton-quitar {
+  min-height: 32px;
+  padding: 4px 10px;
+  border: 1px solid #CDBFAE;
+  border-radius: 8px;
+  background: var(--fondo);
+  color: var(--texto-secundario);
+  font: inherit;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.boton-quitar:hover {
+  border-color: var(--naranja-texto);
+  color: var(--naranja-texto);
+}
+
+.total {
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  padding-top: 12px;
+  font-family: var(--fuente-titulos);
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.total span:last-child {
+  color: var(--naranja-texto);
+}
+
+.recreos {
+  margin: 24px 0 8px;
+  padding: 0;
+  border: 0;
+}
+
+.recreos legend {
+  margin-bottom: 12px;
+  padding: 0;
+  font-family: var(--fuente-titulos);
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+.opcion {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+  padding: 14px 16px;
+  border: 2px solid var(--borde);
+  border-radius: 12px;
+  background: var(--blanco);
+  font-size: 1.05rem;
+  cursor: pointer;
+}
+
+.opcion input {
+  width: 22px;
+  height: 22px;
+  margin: 0;
+  accent-color: var(--naranja);
+}
+
+.opcion:has(input:checked) {
+  border-color: var(--naranja);
+  background: #FFF4EC;
+  font-weight: 700;
+}
+
+.volver {
+  display: inline-block;
+  margin-top: 16px;
+  color: var(--texto-secundario);
+}

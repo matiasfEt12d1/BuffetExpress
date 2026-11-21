@@ -15,6 +15,11 @@ public static class RutasAlumno
         // Paso 1: catálogo
         app.MapGet("/", MostrarCatalogo);
         app.MapPost("/pedido/agregar", (Delegate)AgregarProducto);
+
+        // Paso 2: mi pedido y elección del recreo
+        app.MapGet("/pedido", MostrarPedido);
+        app.MapPost("/pedido/quitar", (Delegate)QuitarProducto);
+        app.MapPost("/pedido/recreo", (Delegate)ElegirRecreo);
     }
 
     // ================= Paso 1: catálogo =================
@@ -131,6 +136,99 @@ public static class RutasAlumno
         GuardarPedidoEnCurso(contexto, pedido);
         // "#producto-1" hace que el navegador vuelva a mostrar la misma tarjeta
         return Results.Redirect("/#producto-" + producto.Id);
+    }
+
+    // ================= Paso 2: mi pedido y recreo =================
+
+    private static IResult MostrarPedido(HttpContext contexto)
+    {
+        PedidoNuevo pedido = LeerPedidoEnCurso(contexto);
+        if (pedido.CantidadTotal() == 0)
+        {
+            return Results.Redirect("/?aviso=vacio");
+        }
+
+        string aviso = "";
+        string codigoAviso = contexto.Request.Query["aviso"].ToString();
+        if (codigoAviso == "recreo") aviso = "Elegí en qué recreo lo retirás: 10:10 o 12:15.";
+
+        // Un renglón por producto, con el botón para quitar una unidad
+        string items = "";
+        foreach (var item in pedido.Productos!)
+        {
+            string nombre = Plantilla.Texto(item.Nombre);
+            items += "<li class=\"item\">"
+                   + "<span class=\"item-nombre\">" + item.Cantidad + " × " + nombre + "</span>"
+                   + "<span class=\"item-precio\">" + Plantilla.Pesos(item.Subtotal()) + "</span>"
+                   + "<form method=\"post\" action=\"/pedido/quitar\">"
+                   + "<input type=\"hidden\" name=\"nombre\" value=\"" + nombre + "\">"
+                   + "<button type=\"submit\" class=\"boton-quitar\" aria-label=\"Quitar un " + nombre + "\">Quitar</button>"
+                   + "</form>"
+                   + "</li>";
+        }
+
+        // Si ya había elegido un recreo, lo dejamos marcado
+        string marca1 = "";
+        string marca2 = "";
+        if (pedido.Recreo == PedidoNuevo.Recreo1) marca1 = "checked";
+        if (pedido.Recreo == PedidoNuevo.Recreo2) marca2 = "checked";
+
+        var marcadores = new Dictionary<string, string>
+        {
+            ["AVISO"] = Plantilla.Aviso(aviso),
+            ["ITEMS"] = items,
+            ["TOTAL"] = Plantilla.Pesos(pedido.Total()),
+            ["MARCA_1010"] = marca1,
+            ["MARCA_1215"] = marca2
+        };
+        return Plantilla.Pagina("Mi pedido", "alumno", "pedido.html", marcadores);
+    }
+
+    // Quita una unidad del producto. Si llega a 0, lo saca del pedido.
+    private static async Task<IResult> QuitarProducto(HttpContext contexto)
+    {
+        var formulario = await contexto.Request.ReadFormAsync();
+        string nombre = formulario["nombre"].ToString();
+
+        PedidoNuevo pedido = LeerPedidoEnCurso(contexto);
+        ItemPedido? item = BuscarItem(pedido, nombre);
+        if (item != null)
+        {
+            item.Cantidad = item.Cantidad - 1;
+            if (item.Cantidad <= 0)
+            {
+                pedido.Productos!.Remove(item);
+            }
+            GuardarPedidoEnCurso(contexto, pedido);
+        }
+
+        if (pedido.CantidadTotal() == 0)
+        {
+            return Results.Redirect("/?aviso=vacio");
+        }
+        return Results.Redirect("/pedido");
+    }
+
+    // Guarda el recreo elegido y pasa a "Tus datos".
+    // El navegador ya obliga a elegir (required), pero lo revisamos también acá.
+    private static async Task<IResult> ElegirRecreo(HttpContext contexto)
+    {
+        var formulario = await contexto.Request.ReadFormAsync();
+        string recreo = formulario["recreo"].ToString();
+
+        PedidoNuevo pedido = LeerPedidoEnCurso(contexto);
+        if (pedido.CantidadTotal() == 0)
+        {
+            return Results.Redirect("/?aviso=vacio");
+        }
+        if (!PedidoNuevo.RecreoValido(recreo))
+        {
+            return Results.Redirect("/pedido?aviso=recreo");
+        }
+
+        pedido.Recreo = recreo;
+        GuardarPedidoEnCurso(contexto, pedido);
+        return Results.Redirect("/datos");
     }
 
     // ================= Ayudas para la sesión =================
