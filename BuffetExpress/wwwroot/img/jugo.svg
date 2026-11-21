@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Jugo de naranja en caja">
+  <!-- sombra -->
+  <ellipse cx="58" cy="104" rx="30" ry="5" fill="#E6DACB"/>
+  <!-- sorbete -->
+  <path d="M66 26 L72 6 L82 6" stroke="#1F2430" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- parte de arriba de la caja -->
+  <path d="M34 34 L46 22 L82 22 L82 34 Z" fill="#C94B08"/>
+  <!-- frente -->
+  <rect x="34" y="34" width="48" height="70" rx="3" fill="#F5A06B"/>
+  <!-- costado -->
+  <path d="M82 34 L92 26 L92 96 L82 104 Z" fill="#E8590C"/>
+  <path d="M82 22 L92 14 L92 26 L82 34 Z" fill="#B8460A"/>
+  <!-- naranja dibujada en la etiqueta -->
+  <circle cx="58" cy="70" r="15" fill="#E8590C"/>
+  <circle cx="58" cy="70" r="15" fill="none" stroke="#FBF8F4" stroke-width="2"/>
+  <path d="M58 55 Q64 46 72 50 Q66 56 58 55 Z" fill="#7BAE4E"/>
+  <circle cx="53" cy="65" r="3" fill="#F5A06B"/>
+</svg>

@@ -17,6 +17,16 @@ builder.Services.ConfigureHttpJsonOptions(opciones =>
     opciones.SerializerOptions.Encoder = JavaScriptEncoder.Create(UnicodeRanges.All);
 });
 
+// Sesión del servidor: guarda el pedido en curso mientras el alumno elige
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession(opciones =>
+{
+    opciones.Cookie.Name = "BuffetExpress.Sesion";
+    opciones.Cookie.HttpOnly = true;
+    opciones.Cookie.IsEssential = true;
+    opciones.IdleTimeout = TimeSpan.FromMinutes(30);
+});
+
 var app = builder.Build();
 
 // ---------- Base de datos ----------
@@ -46,10 +56,16 @@ catch (Exception ex)
 // Carpeta donde están las plantillas HTML de las páginas
 Plantilla.Configurar(Path.Combine(app.Environment.ContentRootPath, "Plantillas"));
 
+// Si algo falla, mostramos una página de error en vez de una pantalla en blanco
+app.UseExceptionHandler("/error");
+app.Map("/error", () => Plantilla.Error("Hubo un problema en el servidor. Probá de nuevo en un ratito.", 500));
+
 // Sirve los archivos de wwwroot (CSS e imágenes)
 app.UseStaticFiles();
+app.UseSession();
 
 // ---------- Rutas ----------
 RutasApi.Registrar(app);
+RutasAlumno.Registrar(app);
 
 app.Run();

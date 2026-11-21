@@ -1,0 +1,105 @@
+/* Buffet Express · pantallas del alumno.
+   Pensadas como celular: una columna centrada de unos 420 px. */
+
+.alumno .contenido {
+  max-width: 452px; /* 420 px + los márgenes de los costados */
+}
+
+.bajada {
+  margin: 0 0 20px;
+  color: var(--texto-secundario);
+}
+
+/* ---------- Paso 1: catálogo ---------- */
+.productos {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.producto {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: 16px;
+  align-items: center;
+  padding: 12px;
+  background: var(--tarjeta);
+  border-radius: var(--radio);
+  scroll-margin-top: 16px;
+}
+
+.producto-dibujo {
+  width: 96px;
+  height: 96px;
+  padding: 6px;
+  background: var(--fondo);
+  border-radius: 12px;
+}
+
+.producto h2 {
+  margin: 0 0 2px;
+  font-size: 1.125rem;
+}
+
+.precio {
+  margin: 0 0 8px;
+  font-family: var(--fuente-titulos);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--naranja-texto);
+}
+
+.producto-acciones {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+}
+
+.producto-acciones form {
+  margin: 0;
+}
+
+.boton-chico {
+  min-height: 40px;
+  padding: 6px 22px;
+}
+
+.en-pedido {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--naranja-texto);
+}
+
+/* Barra "Ver pedido (N) · $TOTAL": queda pegada abajo de la pantalla */
+.barra-pedido {
+  position: sticky;
+  bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60px;
+  padding: 12px 20px;
+  background: var(--naranja);
+  border-radius: 14px;
+  box-shadow: 0 8px 20px rgba(31, 36, 48, 0.18);
+  color: var(--blanco);
+  font-family: var(--fuente-titulos);
+  font-size: 1.15rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background-color 0.15s ease;
+}
+
+.barra-pedido:hover {
+  background: var(--naranja-hover);
+}
+
+.barra-vacia {
+  margin: 0;
+  padding: 16px;
+  border: 2px dashed var(--borde);
+  border-radius: 14px;
+  text-align: center;
+  color: var(--texto-apagado);
+}
