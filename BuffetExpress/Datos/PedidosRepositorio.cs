@@ -197,6 +197,31 @@ public static class PedidosRepositorio
         return pedido;
     }
 
+    // Pedidos de hoy, ordenados por horario de retiro (primero 10:10, después 12:15)
+    // y, dentro de cada recreo, por orden de llegada.
+    public static List<Pedido> ObtenerPedidosDeHoy()
+    {
+        var pedidos = new List<Pedido>();
+        using var conexion = Conexion.Abrir();
+        using (var comando = new MySqlCommand(
+            "SELECT id, codigo_retiro, nombre, curso, recreo, total, estado, fecha FROM pedidos " +
+            "WHERE DATE(fecha) = CURDATE() ORDER BY recreo, fecha, id", conexion))
+        {
+            using var lector = comando.ExecuteReader();
+            while (lector.Read())
+            {
+                pedidos.Add(LeerPedido(lector));
+            }
+        }
+
+        // Los productos de cada pedido (cuando ya cerramos el lector anterior)
+        foreach (var pedido in pedidos)
+        {
+            pedido.Items = ObtenerItems(conexion, pedido.Id);
+        }
+        return pedidos;
+    }
+
     private static Pedido LeerPedido(MySqlDataReader lector)
     {
         return new Pedido

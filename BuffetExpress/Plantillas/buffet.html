@@ -1,0 +1,37 @@
+<div class="panel-titulo">
+  <div>
+    <p class="paso">Panel del buffet · {{FECHA}}</p>
+    <h1>Pedidos de hoy · ordenados por horario de retiro</h1>
+    <p class="nota">La página se actualiza sola cada 30 segundos.</p>
+  </div>
+  <a href="/buffet" class="boton boton-borde">Actualizar</a>
+</div>
+
+<div class="cifras">
+  <div class="cifra">
+    <span class="cifra-numero">{{PENDIENTES}}</span>
+    <span class="cifra-texto">pendientes</span>
+  </div>
+  <div class="cifra">
+    <span class="cifra-numero">{{LISTOS}}</span>
+    <span class="cifra-texto">listos para retirar</span>
+  </div>
+  <div class="cifra">
+    <span class="cifra-numero">{{ENTREGADOS}}</span>
+    <span class="cifra-texto">entregados</span>
+  </div>
+</div>
+
+<section class="recreo" aria-labelledby="recreo-1010">
+  <h2 id="recreo-1010">Recreo 10:10 <span class="recreo-cantidad">{{CANTIDAD_1010}}</span></h2>
+  <div class="grilla">
+    {{PEDIDOS_1010}}
+  </div>
+</section>
+
+<section class="recreo" aria-labelledby="recreo-1215">
+  <h2 id="recreo-1215">Recreo 12:15 <span class="recreo-cantidad">{{CANTIDAD_1215}}</span></h2>
+  <div class="grilla">
+    {{PEDIDOS_1215}}
+  </div>
+</section>
