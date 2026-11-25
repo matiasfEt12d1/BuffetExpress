@@ -1,0 +1,319 @@
+/* Buffet Express · pantallas del alumno.
+   Pensadas como celular: una columna centrada de unos 420 px. */
+
+.alumno .contenido {
+  max-width: 452px; /* 420 px + los márgenes de los costados */
+}
+
+.bajada {
+  margin: 0 0 20px;
+  color: var(--texto-secundario);
+}
+
+/* ---------- Paso 1: catálogo ---------- */
+.productos {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.producto {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: 16px;
+  align-items: center;
+  padding: 12px;
+  background: var(--tarjeta);
+  border-radius: var(--radio);
+  scroll-margin-top: 16px;
+}
+
+.producto-dibujo {
+  width: 96px;
+  height: 96px;
+  padding: 6px;
+  background: var(--fondo);
+  border-radius: 12px;
+}
+
+.producto h2 {
+  margin: 0 0 2px;
+  font-size: 1.125rem;
+}
+
+.precio {
+  margin: 0 0 8px;
+  font-family: var(--fuente-titulos);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--naranja-texto);
+}
+
+.producto-acciones {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+}
+
+.producto-acciones form {
+  margin: 0;
+}
+
+.boton-chico {
+  min-height: 40px;
+  padding: 6px 22px;
+}
+
+.en-pedido {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--naranja-texto);
+}
+
+/* Barra "Ver pedido (N) · $TOTAL": queda pegada abajo de la pantalla */
+.barra-pedido {
+  position: sticky;
+  bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60px;
+  padding: 12px 20px;
+  background: var(--naranja);
+  border-radius: 14px;
+  box-shadow: 0 8px 20px rgba(31, 36, 48, 0.18);
+  color: var(--blanco);
+  font-family: var(--fuente-titulos);
+  font-size: 1.15rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background-color 0.15s ease;
+}
+
+.barra-pedido:hover {
+  background: var(--naranja-hover);
+}
+
+.barra-vacia {
+  margin: 0;
+  padding: 16px;
+  border: 2px dashed var(--borde);
+  border-radius: 14px;
+  text-align: center;
+  color: var(--texto-apagado);
+}
+
+/* ---------- Paso 2: mi pedido y recreo ---------- */
+.items {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--borde);
+}
+
+.item-nombre {
+  flex: 1;
+}
+
+.item-precio {
+  font-weight: 700;
+}
+
+.item form {
+  margin: 0;
+}
+
+.boton-quitar {
+  min-height: 32px;
+  padding: 4px 10px;
+  border: 1px solid #CDBFAE;
+  border-radius: 8px;
+  background: var(--fondo);
+  color: var(--texto-secundario);
+  font: inherit;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.boton-quitar:hover {
+  border-color: var(--naranja-texto);
+  color: var(--naranja-texto);
+}
+
+.total {
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  padding-top: 12px;
+  font-family: var(--fuente-titulos);
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.total span:last-child {
+  color: var(--naranja-texto);
+}
+
+.recreos {
+  margin: 24px 0 8px;
+  padding: 0;
+  border: 0;
+}
+
+.recreos legend {
+  margin-bottom: 12px;
+  padding: 0;
+  font-family: var(--fuente-titulos);
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+.opcion {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+  padding: 14px 16px;
+  border: 2px solid var(--borde);
+  border-radius: 12px;
+  background: var(--blanco);
+  font-size: 1.05rem;
+  cursor: pointer;
+}
+
+.opcion input {
+  width: 22px;
+  height: 22px;
+  margin: 0;
+  accent-color: var(--naranja);
+}
+
+.opcion:has(input:checked) {
+  border-color: var(--naranja);
+  background: #FFF4EC;
+  font-weight: 700;
+}
+
+.volver {
+  display: inline-block;
+  margin-top: 16px;
+  color: var(--texto-secundario);
+}
+
+/* ---------- Paso 3: tus datos ---------- */
+.campo {
+  display: block;
+  margin: 16px 0 6px;
+  font-weight: 600;
+}
+
+.formulario input[type="text"] {
+  width: 100%;
+  min-height: 48px;
+  padding: 10px 14px;
+  border: 2px solid #D8CCBE;
+  border-radius: 12px;
+  background: var(--blanco);
+  color: var(--oscuro);
+  font: inherit;
+}
+
+.formulario input[type="text"]::placeholder {
+  color: #9A9EAA;
+}
+
+.formulario input[type="text"]:focus {
+  border-color: var(--naranja);
+  outline: none;
+}
+
+.resumen {
+  margin: 24px 0;
+}
+
+.resumen p {
+  margin: 0 0 4px;
+  color: var(--texto-secundario);
+}
+
+.resumen .resumen-total {
+  font-family: var(--fuente-titulos);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--oscuro);
+}
+
+.resumen .resumen-nota {
+  margin: 8px 0 0;
+  font-size: 0.9rem;
+  color: var(--texto-apagado);
+}
+
+/* ---------- Paso 4: ticket de retiro ---------- */
+.ticket {
+  padding: 20px 24px 24px;
+  border: 2px solid var(--oscuro);
+  border-top: 10px solid var(--naranja);
+  border-radius: 20px;
+  background: var(--blanco);
+}
+
+.ticket-listo {
+  border-color: var(--naranja);
+  background: #FFF4EC;
+}
+
+.ticket-entregado {
+  border-color: #B9BCC6;
+  border-top-color: #B9BCC6;
+}
+
+.ticket-etiqueta {
+  margin: 0;
+  font-weight: 600;
+  color: var(--texto-secundario);
+}
+
+/* El código bien grande para mostrarlo en el buffet */
+.ticket-codigo {
+  margin: 8px 0 16px;
+  font-family: var(--fuente-titulos);
+  font-size: 5.5rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  text-align: center;
+  color: var(--oscuro);
+}
+
+.ticket-dato {
+  margin: 0 0 4px;
+  font-size: 1.1rem;
+}
+
+.ticket-alumno {
+  color: var(--texto-secundario);
+}
+
+.ticket-items {
+  margin: 8px 0 16px;
+  padding-left: 20px;
+  color: var(--texto-apagado);
+}
+
+.ticket-nota {
+  margin: 20px 0 4px;
+}
+
+.ticket ~ .boton-grande {
+  margin-top: 16px;
+}

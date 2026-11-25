@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Tostado de jamón y queso">
+  <!-- plato -->
+  <ellipse cx="60" cy="100" rx="50" ry="10" fill="#E6DACB"/>
+  <!-- pan de abajo (se ve el borde) -->
+  <rect x="18" y="34" width="84" height="64" rx="12" fill="#B8460A"/>
+  <!-- queso que se derrite por los costados -->
+  <path d="M20 78 L100 78 L100 86 Q94 94 88 86 Q82 80 76 88 Q70 94 64 86 L40 86 Q34 94 28 86 Q24 82 20 86 Z" fill="#F7C948"/>
+  <!-- jamón -->
+  <rect x="18" y="72" width="84" height="7" rx="3" fill="#E88A8A"/>
+  <!-- pan de arriba, tostado -->
+  <rect x="18" y="20" width="84" height="56" rx="12" fill="#B8460A"/>
+  <rect x="23" y="24" width="74" height="47" rx="9" fill="#F2A65E"/>
+  <!-- marcas de la plancha -->
+  <path d="M32 40 L52 32 M32 54 L72 38 M40 64 L88 44 M62 66 L88 56" stroke="#C25A14" stroke-width="4" stroke-linecap="round"/>
+  <!-- corte en diagonal -->
+  <path d="M23 71 L97 24" stroke="#8A3407" stroke-width="2.5" stroke-linecap="round"/>
+</svg>

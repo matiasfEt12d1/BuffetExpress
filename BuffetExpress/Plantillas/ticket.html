@@ -1,0 +1,26 @@
+<p class="paso">Paso 4 de 4 · Ticket digital</p>
+<h1>Ticket de retiro</h1>
+
+<section class="{{CLASE_TICKET}}" aria-label="Ticket de retiro">
+  <p class="ticket-etiqueta">Código de retiro</p>
+  <p class="ticket-codigo">{{CODIGO}}</p>
+
+  <p class="ticket-dato">Recreo: <strong>{{RECREO}}</strong></p>
+  <p class="ticket-dato">Total: <strong>{{TOTAL}}</strong></p>
+  <p class="ticket-dato ticket-alumno">{{NOMBRE}} · {{CURSO}}</p>
+
+  <ul class="ticket-items">
+    {{ITEMS}}
+  </ul>
+
+  {{ESTADO}}
+</section>
+
+<p class="nota ticket-nota">
+  Mostrá este código en el buffet.<br>
+  {{MENSAJE_ESTADO}}
+</p>
+<p class="nota">Pagás {{TOTAL}} en el buffet al retirar.</p>
+
+<a href="/ticket/{{ID}}" class="boton boton-borde boton-grande">Actualizar</a>
+<a href="/" class="volver">Hacer otro pedido</a>

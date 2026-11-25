@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Sándwich de milanesa">
+  <!-- plato -->
+  <ellipse cx="60" cy="98" rx="48" ry="9" fill="#E6DACB"/>
+  <!-- pan de abajo -->
+  <rect x="16" y="76" width="88" height="16" rx="8" fill="#E79A52"/>
+  <!-- milanesa -->
+  <path d="M14 70 Q20 62 30 66 Q40 60 50 66 Q60 60 70 66 Q80 60 90 66 Q100 62 106 70 L104 78 L16 78 Z" fill="#C8782E"/>
+  <circle cx="32" cy="72" r="1.8" fill="#8F4E14"/>
+  <circle cx="52" cy="70" r="1.8" fill="#8F4E14"/>
+  <circle cx="72" cy="73" r="1.8" fill="#8F4E14"/>
+  <circle cx="90" cy="71" r="1.8" fill="#8F4E14"/>
+  <!-- tomate -->
+  <rect x="22" y="58" width="34" height="8" rx="4" fill="#D9472B"/>
+  <rect x="62" y="58" width="36" height="8" rx="4" fill="#D9472B"/>
+  <!-- lechuga -->
+  <path d="M14 58 Q20 50 26 57 Q32 49 38 57 Q44 49 50 57 Q56 49 62 57 Q68 49 74 57 Q80 49 86 57 Q92 49 98 57 Q102 51 106 58 L104 61 L16 61 Z" fill="#7BAE4E"/>
+  <!-- pan de arriba -->
+  <path d="M14 54 Q14 24 60 24 Q106 24 106 54 Z" fill="#E79A52"/>
+  <path d="M14 54 Q14 24 60 24 Q106 24 106 54 L100 54 Q98 30 60 30 Q22 30 20 54 Z" fill="#B8460A" opacity="0.35"/>
+  <!-- semillas -->
+  <ellipse cx="42" cy="38" rx="3" ry="1.6" fill="#FBF8F4"/>
+  <ellipse cx="60" cy="33" rx="3" ry="1.6" fill="#FBF8F4"/>
+  <ellipse cx="78" cy="38" rx="3" ry="1.6" fill="#FBF8F4"/>
+  <ellipse cx="52" cy="44" rx="3" ry="1.6" fill="#FBF8F4"/>
+  <ellipse cx="70" cy="45" rx="3" ry="1.6" fill="#FBF8F4"/>
+</svg>

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Producto del buffet">
+  <!-- bolsa del buffet (se usa si un producto nuevo no tiene dibujo) -->
+  <ellipse cx="60" cy="104" rx="34" ry="5" fill="#E6DACB"/>
+  <path d="M46 40 Q46 22 60 22 Q74 22 74 40" stroke="#B8460A" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <rect x="30" y="38" width="60" height="64" rx="8" fill="#E8590C"/>
+  <circle cx="60" cy="70" r="14" fill="none" stroke="#FBF8F4" stroke-width="5"/>
+  <path d="M60 62 L60 70 L66 74" stroke="#FBF8F4" stroke-width="5" fill="none" stroke-linecap="round"/>
+</svg>
