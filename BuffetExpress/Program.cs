@@ -67,5 +67,6 @@ app.UseSession();
 // ---------- Rutas ----------
 RutasApi.Registrar(app);
 RutasAlumno.Registrar(app);
+RutasBuffet.Registrar(app);
 
 app.Run();

@@ -1,0 +1,162 @@
+/* Buffet Express · panel del buffet.
+   Pensado para una tablet o la computadora: ancho y con tarjetas en grilla. */
+
+.buffet .contenido {
+  max-width: 1200px;
+  padding: 28px 24px 40px;
+}
+
+/* ---------- Título ---------- */
+.panel-titulo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.panel-titulo .nota {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+/* ---------- Cifras grandes en naranja (como en las diapositivas) ---------- */
+.cifras {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.cifra {
+  display: flex;
+  flex-direction: column;
+  padding: 16px 20px;
+  background: var(--tarjeta);
+  border-radius: var(--radio);
+}
+
+.cifra-numero {
+  font-family: var(--fuente-titulos);
+  font-size: 2.5rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.1;
+  color: var(--naranja-texto);
+}
+
+.cifra-texto {
+  color: var(--texto-secundario);
+}
+
+/* ---------- Secciones por recreo ---------- */
+.recreo {
+  margin-bottom: 32px;
+}
+
+.recreo h2 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 12px;
+  padding-bottom: 8px;
+  border-bottom: 3px solid var(--naranja);
+  font-size: 1.4rem;
+}
+
+.recreo-cantidad {
+  font-family: var(--fuente-texto);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--texto-apagado);
+}
+
+.grilla {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+}
+
+.sin-pedidos {
+  margin: 0;
+  color: var(--texto-apagado);
+}
+
+/* ---------- Tarjeta de cada pedido ---------- */
+.pedido {
+  display: flex;
+  flex-direction: column;
+  padding: 18px 20px;
+  background: var(--tarjeta);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+}
+
+.pedido h3 {
+  margin: 0 0 4px;
+  font-size: 1.4rem;
+}
+
+.pedido-codigo {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.04em;
+  color: var(--naranja-texto);
+}
+
+.pedido-alumno {
+  margin: 0 0 2px;
+  font-size: 1.05rem;
+}
+
+.pedido-items {
+  margin: 0 0 4px;
+  color: var(--texto-secundario);
+}
+
+.pedido-total {
+  margin: 0 0 14px;
+  font-size: 0.9rem;
+  color: var(--texto-apagado);
+}
+
+.pedido-pie {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: auto;
+}
+
+.pedido-pie form {
+  margin: 0;
+}
+
+/* Los entregados quedan más apagados */
+.pedido-entregado {
+  background: var(--fondo);
+  opacity: 0.75;
+}
+
+@media (max-width: 600px) {
+  .buffet .contenido {
+    padding: 20px 16px 32px;
+  }
+
+  .cifras {
+    gap: 8px;
+  }
+
+  .cifra {
+    padding: 12px;
+  }
+
+  .cifra-numero {
+    font-size: 1.9rem;
+  }
+
+  .cifra-texto {
+    font-size: 0.85rem;
+  }
+}
