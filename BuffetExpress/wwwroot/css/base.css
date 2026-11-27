@@ -1,0 +1,249 @@
+/* Buffet Express · estilos comunes a todas las páginas.
+   Los colores son los de las diapositivas del informe. */
+
+:root {
+  --oscuro: #1F2430;           /* títulos y botones principales */
+  --oscuro-hover: #353C4E;
+  --fondo: #FBF8F4;            /* fondo de la página */
+  --tarjeta: #F3ECE4;          /* tarjetas arena */
+  --naranja: #E8590C;          /* naranja de marca */
+  --naranja-hover: #C94B08;
+  --naranja-texto: #B8460A;    /* precios y etiquetas */
+  --naranja-suave: #F5A06B;    /* sobre fondo oscuro */
+  --texto-secundario: #4A4F5C;
+  --texto-apagado: #6B7080;
+  --borde: #E4D9CC;
+  --blanco: #FFFFFF;
+  --radio: 16px;
+  --fuente-titulos: "Rubik", "Segoe UI", Ubuntu, Arial, sans-serif;
+  --fuente-texto: "Nunito Sans", "Segoe UI", Ubuntu, Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--fondo);
+  color: var(--oscuro);
+  font-family: var(--fuente-texto);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+h1, h2, h3 {
+  margin: 0 0 8px;
+  font-family: var(--fuente-titulos);
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--oscuro);
+}
+
+h1 {
+  font-size: 1.75rem;
+  text-wrap: balance;
+}
+
+a {
+  color: var(--naranja-texto);
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* ---------- Encabezado con el logo ---------- */
+.encabezado {
+  display: flex;
+  justify-content: center;
+  padding: 14px 16px;
+  background: var(--blanco);
+  border-bottom: 1px solid var(--borde);
+}
+
+.encabezado-logo {
+  display: block;
+  border-radius: 8px;
+}
+
+.logo {
+  width: auto;
+  height: 48px;
+}
+
+/* ---------- Contenido y pie ---------- */
+.contenido {
+  flex: 1;
+  width: 100%;
+  margin: 0 auto;
+  padding: 24px 16px 32px;
+}
+
+.pie {
+  padding: 20px 16px 24px;
+  border-top: 1px solid var(--borde);
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--texto-apagado);
+}
+
+.pie p {
+  margin: 0 0 4px;
+  font-weight: 600;
+}
+
+.pie a {
+  color: var(--texto-secundario);
+}
+
+/* Texto chico en naranja arriba de cada título (como "EL PROBLEMA" en las diapositivas) */
+.paso {
+  margin: 0 0 4px;
+  font-family: var(--fuente-titulos);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--naranja-texto);
+}
+
+.nota {
+  color: var(--texto-apagado);
+}
+
+/* ---------- Tarjetas ---------- */
+.tarjeta {
+  padding: 20px;
+  background: var(--tarjeta);
+  border-radius: var(--radio);
+}
+
+/* ---------- Botones ---------- */
+.boton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 10px 20px;
+  border: 2px solid var(--oscuro);
+  border-radius: 12px;
+  background: var(--oscuro);
+  color: var(--blanco);
+  font-family: var(--fuente-titulos);
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.boton:hover {
+  background: var(--oscuro-hover);
+  border-color: var(--oscuro-hover);
+}
+
+.boton:active {
+  transform: translateY(1px);
+}
+
+.boton-borde {
+  background: transparent;
+  color: var(--oscuro);
+}
+
+.boton-borde:hover {
+  background: var(--tarjeta);
+  border-color: var(--oscuro);
+}
+
+.boton-grande {
+  width: 100%;
+  min-height: 56px;
+  font-size: 1.125rem;
+}
+
+.boton-separado {
+  margin-top: 24px;
+}
+
+.boton:disabled {
+  background: #DDD5CB;
+  border-color: #DDD5CB;
+  color: var(--texto-secundario);
+  cursor: not-allowed;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 3px solid var(--naranja);
+  outline-offset: 2px;
+}
+
+/* ---------- Etiquetas de estado (píldoras) ---------- */
+.etiqueta {
+  display: inline-block;
+  padding: 4px 14px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.etiqueta-pendiente {
+  background: var(--tarjeta);
+  border-color: #D6C8B6;
+  color: var(--oscuro);
+}
+
+.etiqueta-listo {
+  background: var(--naranja-suave);
+  color: var(--oscuro);
+}
+
+.etiqueta-entregado {
+  background: #E4E5E9;
+  color: var(--texto-secundario);
+}
+
+/* ---------- Avisos ---------- */
+.aviso {
+  margin: 0 0 16px;
+  padding: 12px 16px;
+  border-left: 4px solid;
+  border-radius: 12px;
+  font-weight: 600;
+}
+
+.aviso-error {
+  background: #FDE9DD;
+  border-color: var(--naranja);
+  color: #7A2E06;
+}
+
+.aviso-ok {
+  background: #EAF3E3;
+  border-color: #4F8A3A;
+  color: #2B4F20;
+}
+
+.error-mensaje {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}

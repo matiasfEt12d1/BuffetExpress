@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Alfajor">
+  <!-- plato -->
+  <ellipse cx="60" cy="96" rx="48" ry="9" fill="#E6DACB"/>
+  <!-- tapa de abajo -->
+  <ellipse cx="60" cy="80" rx="40" ry="12" fill="#4A2A18"/>
+  <rect x="20" y="70" width="80" height="10" fill="#4A2A18"/>
+  <ellipse cx="60" cy="70" rx="40" ry="12" fill="#5E3722"/>
+  <!-- dulce de leche -->
+  <rect x="22" y="62" width="76" height="8" fill="#D9893A"/>
+  <ellipse cx="60" cy="62" rx="38" ry="11" fill="#E9A65C"/>
+  <!-- tapa de arriba -->
+  <rect x="20" y="46" width="80" height="12" fill="#4A2A18"/>
+  <ellipse cx="60" cy="58" rx="40" ry="12" fill="#4A2A18"/>
+  <ellipse cx="60" cy="46" rx="40" ry="12" fill="#6B4029"/>
+  <!-- hilos de chocolate blanco -->
+  <path d="M30 46 Q40 38 50 46 Q60 54 70 46 Q80 38 90 46" stroke="#FBF8F4" stroke-width="3" fill="none" stroke-linecap="round"/>
+</svg>
